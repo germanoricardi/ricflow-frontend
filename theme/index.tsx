@@ -1,16 +1,24 @@
 'use client';
 
-import * as React from 'react';
-import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
+import { useMemo } from 'react';
+import { ThemeProvider as MuiThemeProvider, ThemeOptions, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
-const theme = createTheme({
-  palette: {
-    mode: 'light', // ou 'dark'
-  },
-});
+// system
+import { palette } from './pallete';
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
+
+  const memoizedValue = useMemo(
+    () => ({
+      palette: {
+        ...palette('dark'),
+      },
+      shape: { borderRadius: 8 },
+    }), []
+  );
+
+  const theme = createTheme(memoizedValue as ThemeOptions);
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
