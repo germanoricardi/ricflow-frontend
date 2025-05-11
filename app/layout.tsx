@@ -1,3 +1,4 @@
+import ThemeProvider from "@/theme";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body>
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
